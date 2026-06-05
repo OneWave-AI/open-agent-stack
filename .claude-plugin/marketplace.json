@@ -1,0 +1,18 @@
+{
+  "name": "open-agent-stack",
+  "owner": {
+    "name": "OneWave AI",
+    "url": "https://www.onewave-ai.com"
+  },
+  "metadata": {
+    "description": "Open-source plugins, managed agents, orchestrators, and design tokens for Claude Code and any AI tool.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    { "name": "ai-news-hq", "source": "./plugins/ai-news-hq", "description": "An AI-news team and HQ that tracks the field with web search and ships daily briefings." },
+    { "name": "release-radar", "source": "./plugins/release-radar", "description": "Track new AI model and tool releases, changelogs, and deprecations." },
+    { "name": "competitor-watch", "source": "./plugins/competitor-watch", "description": "Monitor competitor sites, pricing, and content via web search." },
+    { "name": "content-engine", "source": "./plugins/content-engine", "description": "Repurpose one piece of content across every channel." },
+    { "name": "brand-kit", "source": "./plugins/brand-kit", "description": "Apply a OneWave design style — tokens, theme, and brand commands." }
+  ]
+}
