@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="tidal">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tidal — Design Style Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--tidal-font-body);
+      color: var(--tidal-text-primary);
+      background-color: var(--tidal-bg-base);
+      background-image:
+        var(--tidal-gradient-caustic),
+        var(--tidal-gradient-depth);
+      background-attachment: fixed;
+      line-height: 1.6;
+      padding: var(--tidal-space-7) var(--tidal-space-5);
+      overflow-x: hidden;
+    }
+
+    /* Caustic light pools drifting slowly over the deep */
+    .caustic-field {
+      position: fixed;
+      inset: -20% -10% auto -10%;
+      height: 70vh;
+      pointer-events: none;
+      background:
+        radial-gradient(40% 30% at 20% 30%, #3fd0c91f 0%, transparent 70%),
+        radial-gradient(35% 25% at 78% 18%, #1f648033 0%, transparent 70%),
+        radial-gradient(30% 22% at 55% 60%, #e8c79a14 0%, transparent 70%);
+      filter: blur(8px);
+      animation: var(--tidal-motion-signature);
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 920px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--tidal-space-6);
+    }
+
+    .eyebrow {
+      font-family: var(--tidal-font-mono);
+      font-size: var(--tidal-text-xs);
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--tidal-accent);
+    }
+
+    h1 {
+      font-family: var(--tidal-font-display);
+      font-weight: var(--tidal-weight-bold);
+      font-size: var(--tidal-text-4xl);
+      letter-spacing: -0.01em;
+      margin-top: var(--tidal-space-2);
+      line-height: 1.05;
+    }
+
+    h1 .swell {
+      background: linear-gradient(100deg, var(--tidal-accent) 0%, var(--tidal-accent-warm) 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lede {
+      color: var(--tidal-text-muted);
+      font-size: var(--tidal-text-lg);
+      max-width: 56ch;
+      margin-top: var(--tidal-space-4);
+    }
+
+    /* Wave-line divider */
+    .wave-divider {
+      width: 100%;
+      height: 18px;
+      color: var(--tidal-divider);
+      opacity: 0.7;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--tidal-space-5);
+    }
+
+    .card {
+      background:
+        var(--tidal-gradient-caustic),
+        var(--tidal-surface);
+      border: 1px solid var(--tidal-border);
+      border-radius: var(--tidal-radius-container);
+      padding: var(--tidal-space-5);
+      box-shadow: var(--tidal-elevation-caustic-md);
+      transition: transform var(--tidal-duration-base) var(--tidal-easing-current),
+                  box-shadow var(--tidal-duration-base) var(--tidal-easing-current);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--tidal-elevation-caustic-md), var(--tidal-elevation-caustic-glow);
+    }
+
+    .card h3 {
+      font-family: var(--tidal-font-display);
+      font-weight: var(--tidal-weight-semibold);
+      font-size: var(--tidal-text-xl);
+      margin-bottom: var(--tidal-space-2);
+    }
+
+    .card p {
+      color: var(--tidal-text-muted);
+      font-size: var(--tidal-text-sm);
+    }
+
+    .glass {
+      background: #0c3a4f99;
+      backdrop-filter: blur(var(--tidal-blur-glass));
+      -webkit-backdrop-filter: blur(var(--tidal-blur-glass));
+      border: 1px solid var(--tidal-border);
+      border-radius: var(--tidal-radius-container);
+      padding: var(--tidal-space-6);
+      box-shadow: var(--tidal-elevation-caustic-sm);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--tidal-space-5);
+      justify-content: space-between;
+    }
+
+    .glass .copy { max-width: 44ch; }
+    .glass .copy p { color: var(--tidal-text-muted); font-size: var(--tidal-text-sm); margin-top: var(--tidal-space-2); }
+
+    .controls { display: flex; gap: var(--tidal-space-3); flex-wrap: wrap; }
+
+    .btn {
+      font-family: var(--tidal-font-display);
+      font-weight: var(--tidal-weight-semibold);
+      font-size: var(--tidal-text-base);
+      border: none;
+      border-radius: var(--tidal-radius-control);
+      padding: var(--tidal-space-3) var(--tidal-space-5);
+      cursor: pointer;
+      transition: transform var(--tidal-duration-fast) var(--tidal-easing-swell),
+                  box-shadow var(--tidal-duration-fast) var(--tidal-easing-swell),
+                  background var(--tidal-duration-fast) var(--tidal-easing-swell);
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, var(--tidal-accent) 0%, #5fe0d2 100%);
+      color: #04141f;
+      box-shadow: var(--tidal-elevation-caustic-glow);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--tidal-elevation-caustic-glow), var(--tidal-elevation-caustic-md); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--tidal-text-primary);
+      border: 1px solid var(--tidal-divider);
+    }
+    .btn-ghost:hover { background: #16526b55; }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--tidal-space-2);
+      font-family: var(--tidal-font-mono);
+      font-size: var(--tidal-text-xs);
+      color: var(--tidal-accent-warm);
+      background: #e8c79a14;
+      border: 1px solid #e8c79a33;
+      border-radius: var(--tidal-radius-pill);
+      padding: var(--tidal-space-1) var(--tidal-space-3);
+    }
+
+    .swatches { display: flex; gap: var(--tidal-space-3); flex-wrap: wrap; }
+    .swatch {
+      width: 64px; height: 64px;
+      border-radius: var(--tidal-radius-control);
+      border: 1px solid var(--tidal-border);
+      box-shadow: var(--tidal-elevation-caustic-sm);
+    }
+    .swatch-label { font-family: var(--tidal-font-mono); font-size: 0.65rem; color: var(--tidal-text-muted); margin-top: var(--tidal-space-1); display: block; text-align: center; }
+
+    code { font-family: var(--tidal-font-mono); color: var(--tidal-accent); font-size: var(--tidal-text-sm); }
+  </style>
+</head>
+<body>
+  <div class="caustic-field" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <header>
+      <span class="eyebrow">Design Style</span>
+      <h1>Drift through the <span class="swell">tidal</span> deep</h1>
+      <p class="lede">
+        Deep ocean blues and teals fade into abyssal navy. Foam-white text rides
+        on layered depth gradients, with sandy accents catching the caustic light
+        far below the surface.
+      </p>
+    </header>
+
+    <svg class="wave-divider" viewBox="0 0 1200 18" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0 9 C 100 0, 200 18, 300 9 S 500 0, 600 9 S 800 18, 900 9 S 1100 0, 1200 9"
+            fill="none" stroke="currentColor" stroke-width="2" />
+    </svg>
+
+    <section class="grid">
+      <article class="card">
+        <h3>Layered depth</h3>
+        <p>Surfaces stack over a vertical gradient, each casting a soft caustic-light shadow into the water below.</p>
+      </article>
+      <article class="card">
+        <h3>Flowing containers</h3>
+        <p>Generous <code>1.5rem</code> radii keep every panel smooth and current-shaped, never sharp.</p>
+      </article>
+      <article class="card">
+        <h3>Humanist sans</h3>
+        <p>Rounded Quicksand and Nunito give the system a warm, buoyant, readable voice.</p>
+      </article>
+    </section>
+
+    <section class="glass">
+      <div class="copy">
+        <span class="pill">caustic glass</span>
+        <p>A floating glass panel blurs the depth behind it. Slow, current-like motion sways the light pools above.</p>
+      </div>
+      <div class="controls">
+        <button class="btn btn-primary" type="button">Dive in</button>
+        <button class="btn btn-ghost" type="button">Learn more</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h3>Palette</h3>
+      <div class="swatches" style="margin-top: 1rem;">
+        <div><div class="swatch" style="background:#04141f"></div><span class="swatch-label">bg.base</span></div>
+        <div><div class="swatch" style="background:#072636"></div><span class="swatch-label">bg.raised</span></div>
+        <div><div class="swatch" style="background:#0c3a4f"></div><span class="swatch-label">surface</span></div>
+        <div><div class="swatch" style="background:#3fd0c9"></div><span class="swatch-label">accent</span></div>
+        <div><div class="swatch" style="background:#e8c79a"></div><span class="swatch-label">accent-warm</span></div>
+        <div><div class="swatch" style="background:#eef9fb"></div><span class="swatch-label">text</span></div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

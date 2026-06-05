@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="aurora-mesh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>aurora-mesh — preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Outfit:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ---- aurora-mesh tokens (inlined from theme.css for a self-contained preview) ---- */
+    [data-theme="aurora-mesh"] {
+      --color-bg-base: #0a1118;
+      --color-bg-raised: #101a24;
+      --color-surface: rgba(22, 34, 46, 0.55);
+      --color-text-primary: #eef4f7;
+      --color-text-muted: #a9bcc7;
+      --color-accent-teal: #3fd4c5;
+      --color-accent-amber: #f5b94d;
+      --color-accent-rose: #f5849b;
+      --color-border: rgba(143, 178, 196, 0.18);
+      --color-divider: rgba(143, 178, 196, 0.28);
+      --font-display: "Space Grotesk", "Outfit", system-ui, sans-serif;
+      --font-body: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+      --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+      --text-xs: 0.75rem;  --text-sm: 0.875rem; --text-base: 1rem;
+      --text-lg: 1.25rem;  --text-xl: 1.75rem;  --text-2xl: 2.5rem; --text-3xl: 3.5rem;
+      --weight-regular: 400; --weight-medium: 500; --weight-semibold: 600; --weight-bold: 700;
+      --space-4: 1rem; --space-5: 1.5rem; --space-6: 2rem; --space-7: 3rem; --space-8: 4rem;
+      --radius-container: 1.5rem; --radius-control: 0.75rem; --radius-pill: 9999px;
+      --blur-glass: 18px; --blur-orb: 90px;
+      --elevation-card: 0px 18px 48px -12px rgba(4, 10, 16, 0.45);
+      --elevation-glow: 0px 0px 32px 0px rgba(63, 212, 197, 0.30);
+      --duration-fast: 180ms; --duration-base: 320ms; --duration-slow: 640ms; --duration-drift: 24000ms;
+      --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+      --ease-drift: cubic-bezier(0.45, 0, 0.55, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text-primary);
+      background: var(--color-bg-base);
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ---- Animated gradient-mesh background + drifting blurred orbs ---- */
+    .mesh {
+      position: fixed;
+      inset: -20%;
+      z-index: 0;
+      background:
+        radial-gradient(40% 40% at 20% 25%, rgba(63, 212, 197, 0.35), transparent 70%),
+        radial-gradient(38% 38% at 80% 20%, rgba(245, 185, 77, 0.28), transparent 70%),
+        radial-gradient(45% 45% at 65% 80%, rgba(245, 132, 155, 0.30), transparent 70%),
+        radial-gradient(50% 50% at 30% 85%, rgba(63, 212, 197, 0.22), transparent 70%);
+      filter: blur(var(--blur-orb));
+      animation: meshDrift var(--duration-drift) var(--ease-drift) infinite alternate;
+    }
+    @keyframes meshDrift {
+      0%   { transform: translate3d(-3%, -2%, 0) scale(1.05) rotate(0deg); }
+      50%  { transform: translate3d(3%, 2%, 0) scale(1.12) rotate(4deg); }
+      100% { transform: translate3d(-2%, 3%, 0) scale(1.05) rotate(-3deg); }
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-6);
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent-teal);
+      margin-bottom: var(--space-4);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: var(--weight-bold);
+      font-size: var(--text-3xl);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: var(--space-5);
+      max-width: 18ch;
+    }
+    h1 .grad {
+      background: linear-gradient(100deg, var(--color-accent-teal), var(--color-accent-amber) 55%, var(--color-accent-rose));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lede {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      max-width: 56ch;
+      line-height: 1.6;
+      margin-bottom: var(--space-6);
+    }
+
+    /* ---- Gradient-fade divider ---- */
+    .divider {
+      height: 1px;
+      border: 0;
+      margin: var(--space-7) 0;
+      background: linear-gradient(90deg, transparent, var(--color-divider) 18%, var(--color-divider) 82%, transparent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-5);
+    }
+
+    /* ---- Glassy low-opacity card ---- */
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-container);
+      padding: var(--space-6);
+      backdrop-filter: blur(var(--blur-glass));
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+      box-shadow: var(--elevation-card);
+      transition: transform var(--duration-base) var(--ease-soft),
+        box-shadow var(--duration-base) var(--ease-soft);
+    }
+    .card:hover { transform: translateY(-4px); }
+
+    .card .dot {
+      width: 36px; height: 36px;
+      border-radius: var(--radius-pill);
+      margin-bottom: var(--space-4);
+    }
+    .dot.teal  { background: var(--color-accent-teal); box-shadow: 0 0 24px rgba(63,212,197,0.55); }
+    .dot.amber { background: var(--color-accent-amber); box-shadow: 0 0 24px rgba(245,185,77,0.5); }
+    .dot.rose  { background: var(--color-accent-rose); box-shadow: 0 0 24px rgba(245,132,155,0.5); }
+
+    .card h3 {
+      font-family: var(--font-display);
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-lg);
+      margin-bottom: var(--space-2);
+    }
+    .card p {
+      color: var(--color-text-muted);
+      font-size: var(--text-base);
+      line-height: 1.55;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-4);
+      align-items: center;
+      margin-top: var(--space-7);
+    }
+
+    /* ---- Button ---- */
+    .btn {
+      font-family: var(--font-body);
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-base);
+      padding: var(--space-3) var(--space-5);
+      border-radius: var(--radius-control);
+      border: 0;
+      cursor: pointer;
+      transition: transform var(--duration-fast) var(--ease-soft),
+        box-shadow var(--duration-base) var(--ease-soft);
+    }
+    .btn-primary {
+      background: linear-gradient(105deg, var(--color-accent-teal), var(--color-accent-amber));
+      color: #06121a;
+      box-shadow: var(--elevation-glow);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 44px rgba(63,212,197,0.45); }
+    .btn-ghost {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      color: var(--color-text-primary);
+      backdrop-filter: blur(var(--blur-glass));
+      -webkit-backdrop-filter: blur(var(--blur-glass));
+    }
+    .btn-ghost:hover { transform: translateY(-2px); border-color: var(--color-accent-teal); }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--color-accent-amber);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .mesh { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="mesh" aria-hidden="true"></div>
+
+  <main class="wrap">
+    <p class="eyebrow">aurora-mesh</p>
+    <h1>Soft futuristic surfaces that <span class="grad">drift in teal, amber, and rose</span></h1>
+    <p class="lede">
+      A dark, low-contrast theme built on animated gradient-mesh light, glassy low-opacity
+      cards, and ambient blurred orbs. Motion never fully settles — it breathes. Apply the
+      theme with <code>data-theme="aurora-mesh"</code>.
+    </p>
+
+    <div class="actions">
+      <button class="btn btn-primary">Get started</button>
+      <button class="btn btn-ghost">View tokens</button>
+    </div>
+
+    <hr class="divider" aria-hidden="true" />
+
+    <section class="grid">
+      <article class="card">
+        <div class="dot teal" aria-hidden="true"></div>
+        <h3>Mesh background</h3>
+        <p>Layered radial gradients drift on a 24s loop behind a heavy blur, producing soft moving light.</p>
+      </article>
+      <article class="card">
+        <div class="dot amber" aria-hidden="true"></div>
+        <h3>Glass surfaces</h3>
+        <p>Low-opacity fills with backdrop blur and hairline borders keep panels light and translucent.</p>
+      </article>
+      <article class="card">
+        <div class="dot rose" aria-hidden="true"></div>
+        <h3>Gradient fades</h3>
+        <p>Dividers and edges dissolve into transparency rather than drawing hard lines.</p>
+      </article>
+    </section>
+
+    <hr class="divider" aria-hidden="true" />
+
+    <p class="lede" style="margin-bottom:0;">
+      Body text sits at a comfortable 7.9:1 contrast in muted tone, while primary text reaches
+      15.6:1 — both clear AA+ on the deep base canvas.
+    </p>
+  </main>
+</body>
+</html>

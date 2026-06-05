@@ -1,0 +1,9 @@
+{
+  "name": "release-radar",
+  "description": "Tracks new AI model and tool releases, changelogs, and deprecations; flags what affects the user stack.",
+  "version": "0.1.0",
+  "author": {
+    "name": "OneWave AI",
+    "url": "https://www.onewave-ai.com"
+  }
+}

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="liquid-glass">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Liquid Glass — preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      color: var(--color-text-primary);
+      background: var(--color-bg-base);
+      /* Deep slate with refractive teal light-pools behind the glass */
+      background-image:
+        radial-gradient(60rem 40rem at 12% -10%, rgba(46, 230, 201, 0.16), transparent 60%),
+        radial-gradient(50rem 36rem at 92% 8%, rgba(20, 184, 166, 0.14), transparent 60%),
+        radial-gradient(48rem 48rem at 70% 110%, rgba(46, 230, 201, 0.10), transparent 55%),
+        linear-gradient(180deg, var(--color-bg-base), var(--color-bg-raised));
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      padding: var(--space-16) var(--space-6);
+    }
+
+    .shell { max-width: 64rem; margin: 0 auto; }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin: 0 0 var(--space-3);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: var(--weight-bold);
+      font-size: var(--text-3xl);
+      letter-spacing: var(--tracking-tight);
+      line-height: 1.04;
+      margin: 0 0 var(--space-4);
+    }
+
+    .lede {
+      font-size: var(--text-lg);
+      line-height: 1.6;
+      color: var(--color-text-muted);
+      max-width: 42rem;
+      margin: 0 0 var(--space-12);
+    }
+
+    /* Frosted refractive glass surface */
+    .glass {
+      position: relative;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-container);
+      box-shadow: var(--elevation-glass);
+      backdrop-filter: blur(var(--blur-glass)) saturate(140%);
+      -webkit-backdrop-filter: blur(var(--blur-glass)) saturate(140%);
+      padding: var(--space-8);
+      overflow: hidden;
+      transition: var(--motion-signature);
+      will-change: transform;
+    }
+    /* Light edge catching the top of each panel */
+    .glass::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(238, 244, 248, 0.55), transparent);
+      opacity: 0.7;
+    }
+    .glass:hover {
+      transform: translateY(-6px) scale(1.012);
+      box-shadow: var(--elevation-glass), var(--elevation-glow);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      gap: var(--space-6);
+      margin-bottom: var(--space-12);
+    }
+
+    .card-k {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--color-accent);
+      margin: 0 0 var(--space-2);
+    }
+    .card-h {
+      font-family: var(--font-display);
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-xl);
+      letter-spacing: var(--tracking-tight);
+      margin: 0 0 var(--space-3);
+    }
+    .card-p {
+      font-size: var(--text-sm);
+      line-height: 1.6;
+      color: var(--color-text-muted);
+      margin: 0;
+    }
+
+    /* Soft light-gradient divider */
+    .divider {
+      height: 1px;
+      border: 0;
+      margin: var(--space-12) 0;
+      background: var(--divider-gradient);
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; }
+
+    .btn {
+      font-family: var(--font-display);
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-base);
+      letter-spacing: var(--tracking-tight);
+      padding: var(--space-3) var(--space-6);
+      border-radius: var(--radius-control);
+      cursor: pointer;
+      transition: var(--motion-signature);
+    }
+    .btn-primary {
+      background: var(--color-accent);
+      color: var(--color-on-accent);
+      border: 1px solid transparent;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--elevation-glow);
+    }
+    .btn-ghost {
+      background: var(--color-surface);
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border);
+      backdrop-filter: blur(var(--blur-glass-sm));
+      -webkit-backdrop-filter: blur(var(--blur-glass-sm));
+    }
+    .btn-ghost:hover { transform: translateY(-3px); border-color: var(--color-accent); }
+
+    .chip {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-primary);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      padding: var(--space-2) var(--space-4);
+      backdrop-filter: blur(var(--blur-glass-sm));
+      -webkit-backdrop-filter: blur(var(--blur-glass-sm));
+    }
+
+    .swatches { display: flex; gap: var(--space-3); margin-top: var(--space-6); flex-wrap: wrap; }
+    .swatch {
+      width: 3rem; height: 3rem; border-radius: var(--radius-control);
+      border: 1px solid var(--color-border);
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <p class="eyebrow">Design Style</p>
+    <h1>Liquid Glass</h1>
+    <p class="lede">
+      Frosted, refractive surfaces float over deep slate. One high-vibrancy teal accent
+      carries the energy; light edges and soft glow give every panel translucent depth.
+    </p>
+
+    <section class="grid">
+      <article class="glass">
+        <p class="card-k">01 / surface</p>
+        <h2 class="card-h">Frosted Depth</h2>
+        <p class="card-p">
+          Translucent containers blur whatever drifts behind them, catching a thin light
+          edge along the top to read as real glass.
+        </p>
+      </article>
+      <article class="glass">
+        <p class="card-k">02 / accent</p>
+        <h2 class="card-h">Teal Charge</h2>
+        <p class="card-p">
+          A single vibrant accent anchors focus, active states, and the glow that pools
+          beneath each surface on hover.
+        </p>
+      </article>
+      <article class="glass">
+        <p class="card-k">03 / motion</p>
+        <h2 class="card-h">Springy Lift</h2>
+        <p class="card-p">
+          Hover any panel: it rises with a spring overshoot and gains a teal glow, the
+          signature parallax of the system.
+        </p>
+      </article>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="glass">
+      <h2 class="card-h">Components</h2>
+      <p class="card-p">Body text sits comfortably on glass with mid contrast and an airy line height for long-form reading.</p>
+      <div class="actions" style="margin-top: var(--space-6);">
+        <button class="btn btn-primary">Primary action</button>
+        <button class="btn btn-ghost">Secondary</button>
+        <span class="chip">backdrop-blur: 20px</span>
+        <span class="chip">accent #2ee6c9</span>
+      </div>
+      <div class="swatches">
+        <span class="swatch" style="background: var(--color-bg-base);" title="bg.base"></span>
+        <span class="swatch" style="background: var(--color-bg-raised);" title="bg.raised"></span>
+        <span class="swatch" style="background: var(--color-accent);" title="accent"></span>
+        <span class="swatch" style="background: var(--color-accent-strong);" title="accent-strong"></span>
+        <span class="swatch" style="background: var(--color-text-muted);" title="text.muted"></span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

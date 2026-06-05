@@ -1,0 +1,9 @@
+{
+  "name": "ai-news-hq",
+  "description": "An AI-news crew (scout, analyst, editor) that tracks the field via web search and ships a ranked briefing on a cadence.",
+  "version": "0.1.0",
+  "author": {
+    "name": "OneWave AI",
+    "url": "https://www.onewave-ai.com"
+  }
+}

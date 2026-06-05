@@ -1,0 +1,9 @@
+{
+  "name": "brand-kit",
+  "description": "Applies a OneWave design style (tokens + theme) and exposes brand commands.",
+  "version": "0.1.0",
+  "author": {
+    "name": "OneWave AI",
+    "url": "https://www.onewave-ai.com"
+  }
+}

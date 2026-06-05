@@ -1,0 +1,83 @@
+/* aurora-mesh — soft futuristic dark theme tokens as CSS custom properties.
+   Apply by setting data-theme="aurora-mesh" on a root element (e.g. <html> or <body>).
+   No purple. WCAG AA+ verified text/accent contrast on bg.base. */
+
+[data-theme="aurora-mesh"] {
+  /* Color — backgrounds */
+  --color-bg-base: #0a1118;
+  --color-bg-raised: #101a24;
+  --color-surface: rgba(22, 34, 46, 0.55);
+
+  /* Color — text */
+  --color-text-primary: #eef4f7;
+  --color-text-muted: #a9bcc7;
+
+  /* Color — accents (teal / amber / rose) */
+  --color-accent-teal: #3fd4c5;
+  --color-accent-amber: #f5b94d;
+  --color-accent-rose: #f5849b;
+
+  /* Color — lines */
+  --color-border: rgba(143, 178, 196, 0.18);
+  --color-divider: rgba(143, 178, 196, 0.28);
+
+  /* Type — families */
+  --font-display: "Space Grotesk", "Outfit", system-ui, sans-serif;
+  --font-body: "Outfit", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Type — scale */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.25rem;
+  --text-xl: 1.75rem;
+  --text-2xl: 2.5rem;
+  --text-3xl: 3.5rem;
+
+  /* Type — weight */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Space scale */
+  --space-0: 0rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+
+  /* Radius */
+  --radius-container: 1.5rem;
+  --radius-control: 0.75rem;
+  --radius-pill: 9999px;
+
+  /* Blur */
+  --blur-glass: 18px;
+  --blur-orb: 90px;
+
+  /* Elevation */
+  --elevation-card: 0px 18px 48px -12px rgba(4, 10, 16, 0.45);
+  --elevation-glow: 0px 0px 32px 0px rgba(63, 212, 197, 0.30);
+
+  /* Motion — duration */
+  --duration-fast: 180ms;
+  --duration-base: 320ms;
+  --duration-slow: 640ms;
+  --duration-drift: 24000ms;
+
+  /* Motion — easing */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
+  --ease-drift: cubic-bezier(0.45, 0, 0.55, 1);
+
+  /* Motion — signature: slow drifting gradient-mesh */
+  --motion-signature: transform var(--duration-drift) var(--ease-drift),
+    opacity var(--duration-drift) var(--ease-drift),
+    background-position var(--duration-drift) var(--ease-drift);
+}

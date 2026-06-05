@@ -1,0 +1,114 @@
+/* neo-terminal — design tokens as CSS custom properties.
+   AI-console / cyber. Near-black + phosphor green + amber mono.
+   Apply by setting data-theme="neo-terminal" on <html> or any container. */
+
+[data-theme="neo-terminal"] {
+  /* Color — background + surface */
+  --nt-color-bg-base: #05080a;
+  --nt-color-bg-raised: #0a1014;
+  --nt-color-surface: #0e161b;
+
+  /* Color — text */
+  --nt-color-text-primary: #d6f5e3;
+  --nt-color-text-muted: #7fa394;
+
+  /* Color — accent */
+  --nt-color-accent: #39ff8b;
+  --nt-color-accent-alt: #ffb627;
+  --nt-color-accent-danger: #ff5c5c;
+
+  /* Color — lines */
+  --nt-color-border: #1d3a2f;
+  --nt-color-divider: #16302a;
+
+  /* Type — families (monospace throughout) */
+  --nt-font-display: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+  --nt-font-body: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+  --nt-font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Type — scale */
+  --nt-text-xs: 0.75rem;
+  --nt-text-sm: 0.875rem;
+  --nt-text-base: 1rem;
+  --nt-text-lg: 1.25rem;
+  --nt-text-xl: 1.625rem;
+  --nt-text-2xl: 2.125rem;
+  --nt-text-3xl: 2.875rem;
+
+  /* Type — weight */
+  --nt-weight-regular: 400;
+  --nt-weight-medium: 500;
+  --nt-weight-bold: 700;
+
+  /* Type — tracking */
+  --nt-tracking-tight: -0.01em;
+  --nt-tracking-normal: 0em;
+  --nt-tracking-wide: 0.08em;
+  --nt-tracking-caps: 0.18em;
+
+  /* Type — leading */
+  --nt-leading-tight: 1.15;
+  --nt-leading-normal: 1.55;
+
+  /* Space scale */
+  --nt-space-0: 0rem;
+  --nt-space-1: 0.25rem;
+  --nt-space-2: 0.5rem;
+  --nt-space-3: 0.75rem;
+  --nt-space-4: 1rem;
+  --nt-space-5: 1.5rem;
+  --nt-space-6: 2rem;
+  --nt-space-7: 3rem;
+  --nt-space-8: 4rem;
+
+  /* Radius */
+  --nt-radius-container: 2px;
+  --nt-radius-control: 1px;
+
+  /* Elevation — glow based */
+  --nt-elevation-flat: 0 0 0 0 #000000;
+  --nt-elevation-panel: 0 1px 0 0 rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(57, 255, 139, 0.06);
+  --nt-elevation-glow: 0 0 18px 0 rgba(57, 255, 139, 0.35);
+  --nt-elevation-glow-amber: 0 0 16px 0 rgba(255, 182, 39, 0.32);
+
+  /* Background treatments — dot-grid + scanlines */
+  --nt-bg-dotgrid:
+    radial-gradient(rgba(57, 255, 139, 0.10) 1px, transparent 1px);
+  --nt-bg-dotgrid-size: 22px 22px;
+  --nt-bg-scanline:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(57, 255, 139, 0.035) 0px,
+      rgba(57, 255, 139, 0.035) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+
+  /* Motion — duration */
+  --nt-duration-instant: 80ms;
+  --nt-duration-fast: 160ms;
+  --nt-duration-base: 240ms;
+  --nt-duration-slow: 420ms;
+  --nt-duration-type: 2200ms;
+  --nt-duration-blink: 1000ms;
+
+  /* Motion — easing */
+  --nt-ease-standard: cubic-bezier(0.2, 0, 0.2, 1);
+  --nt-ease-step: steps(24, end);
+  --nt-ease-blink: steps(2, jump-none);
+
+  /* Base application */
+  color: var(--nt-color-text-primary);
+  background-color: var(--nt-color-bg-base);
+  font-family: var(--nt-font-body);
+  font-size: var(--nt-text-base);
+  line-height: var(--nt-leading-normal);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="neo-terminal"] * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

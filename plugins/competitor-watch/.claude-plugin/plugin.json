@@ -1,0 +1,9 @@
+{
+  "name": "competitor-watch",
+  "description": "Monitors competitor sites, pricing pages, and content via web search; reports diffs.",
+  "version": "0.1.0",
+  "author": {
+    "name": "OneWave AI",
+    "url": "https://www.onewave-ai.com"
+  }
+}

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="sand-terra">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sand-terra — design style preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,460;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    /* ---- tokens (mirrors theme.css) ---- */
+    [data-theme="sand-terra"] {
+      --color-bg-base: #16110d;
+      --color-bg-raised: #1f1813;
+      --color-surface: #2a201a;
+      --color-text-primary: #f3e7d8;
+      --color-text-muted: #bda88f;
+      --color-accent: #e07a4f;
+      --color-accent-strong: #f0a079;
+      --color-border: #3b2e24;
+      --color-divider: #2f241c;
+      --color-on-accent: #1a1008;
+
+      --font-display: "Fraunces", Georgia, Cambria, "Times New Roman", serif;
+      --font-body: "Inter", "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+      --font-mono: "JetBrains Mono", SFMono-Regular, Menlo, Consolas, monospace;
+
+      --text-sm: 0.875rem;
+      --text-base: 1rem;
+      --text-lg: 1.25rem;
+      --text-2xl: 2.125rem;
+      --text-4xl: 3.875rem;
+
+      --weight-display: 460;
+      --weight-semibold: 600;
+      --leading-tight: 1.12;
+      --leading-normal: 1.6;
+
+      --space-2: 0.5rem;
+      --space-3: 0.75rem;
+      --space-4: 1rem;
+      --space-5: 1.5rem;
+      --space-6: 2rem;
+      --space-7: 3rem;
+      --space-8: 4rem;
+
+      --radius-container: 1.25rem;
+      --radius-control: 0.625rem;
+      --radius-pill: 999px;
+
+      --elevation-soft:
+        0 0.5rem 1.5rem -0.25rem rgba(10, 6, 3, 0.45),
+        0 0.0625rem 0 0 rgba(224, 122, 79, 0.06);
+      --elevation-lifted:
+        0 1.25rem 3rem -0.5rem rgba(8, 5, 2, 0.55),
+        0 0.0625rem 0 0 rgba(224, 122, 79, 0.08);
+
+      --duration-slow: 560ms;
+      --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      font-family: var(--font-body);
+      color: var(--color-text-primary);
+      background-color: var(--color-bg-base);
+      /* warm mesh gradient over near-black base */
+      background-image:
+        radial-gradient(60% 50% at 78% 12%, rgba(224, 122, 79, 0.20), transparent 70%),
+        radial-gradient(55% 55% at 12% 88%, rgba(176, 100, 64, 0.14), transparent 72%),
+        radial-gradient(40% 40% at 50% 40%, rgba(240, 160, 121, 0.06), transparent 75%);
+      background-attachment: fixed;
+      line-height: var(--leading-normal);
+      position: relative;
+    }
+
+    /* soft film grain overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.5;
+      mix-blend-mode: soft-light;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 2;
+      max-width: 60rem;
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-5) var(--space-8);
+    }
+
+    /* slow easing-led reveal — the signature motion */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      animation: rise var(--duration-slow) var(--ease-emphasized) forwards;
+    }
+    .reveal.d1 { animation-delay: 80ms; }
+    .reveal.d2 { animation-delay: 200ms; }
+    .reveal.d3 { animation-delay: 320ms; }
+    @keyframes rise {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { animation: none; opacity: 1; transform: none; }
+    }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent-strong);
+      margin: 0 0 var(--space-3);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: var(--weight-display);
+      font-size: var(--text-4xl);
+      line-height: var(--leading-tight);
+      letter-spacing: -0.01em;
+      margin: 0 0 var(--space-4);
+      max-width: 18ch;
+    }
+
+    .lede {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      max-width: 52ch;
+      margin: 0 0 var(--space-6);
+    }
+
+    .divider {
+      height: 1px;
+      border: 0;
+      background: var(--color-divider);
+      margin: var(--space-7) 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+      gap: var(--space-5);
+    }
+
+    .card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-container);
+      padding: var(--space-6);
+      box-shadow: var(--elevation-soft);
+      transition:
+        transform var(--duration-slow) var(--ease-emphasized),
+        box-shadow var(--duration-slow) var(--ease-emphasized);
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--elevation-lifted);
+    }
+
+    .card h3 {
+      font-family: var(--font-display);
+      font-weight: var(--weight-semibold);
+      font-size: var(--text-2xl);
+      line-height: var(--leading-tight);
+      margin: 0 0 var(--space-3);
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--color-text-muted);
+      font-size: var(--text-base);
+    }
+
+    .chip {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--color-text-primary);
+      background: var(--color-bg-raised);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-pill);
+      padding: var(--space-2) var(--space-4);
+      margin: 0 var(--space-2) var(--space-2) 0;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      align-items: center;
+      margin-top: var(--space-6);
+    }
+
+    .btn {
+      font-family: var(--font-body);
+      font-size: var(--text-base);
+      font-weight: var(--weight-semibold);
+      cursor: pointer;
+      border-radius: var(--radius-control);
+      padding: var(--space-3) var(--space-5);
+      transition:
+        transform var(--duration-slow) var(--ease-emphasized),
+        background var(--duration-slow) var(--ease-emphasized),
+        border-color var(--duration-slow) var(--ease-emphasized);
+    }
+    .btn:active { transform: translateY(1px); }
+
+    .btn-primary {
+      background: var(--color-accent);
+      color: var(--color-on-accent);
+      border: 1px solid var(--color-accent);
+    }
+    .btn-primary:hover {
+      background: var(--color-accent-strong);
+      border-color: var(--color-accent-strong);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-text-primary);
+      border: 1px solid var(--color-border);
+    }
+    .btn-ghost:hover { border-color: var(--color-accent); }
+
+    .panel {
+      background: var(--color-bg-raised);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-container);
+      padding: var(--space-6);
+      box-shadow: var(--elevation-soft);
+    }
+
+    .panel p { margin: 0 0 var(--space-4); }
+    .panel p:last-child { margin-bottom: 0; }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      color: var(--color-accent-strong);
+    }
+
+    .swatches { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-5); }
+    .swatch {
+      width: 4rem; height: 4rem;
+      border-radius: var(--radius-control);
+      border: 1px solid var(--color-border);
+      display: flex; align-items: flex-end;
+      font-family: var(--font-mono);
+      font-size: 0.6rem; color: var(--color-text-primary);
+      padding: var(--space-2);
+    }
+
+    footer {
+      margin-top: var(--space-8);
+      color: var(--color-text-muted);
+      font-size: var(--text-sm);
+      font-family: var(--font-mono);
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="eyebrow reveal d1">Design Style — sand-terra</p>
+    <h1 class="reveal d1">Warm editorial-organic, built for the dark.</h1>
+    <p class="lede reveal d2">
+      Sand and terracotta over near-black. Low-to-mid contrast, soft film grain,
+      rounded containers with warm diffuse shadows, and motion that rises and settles
+      slowly. A serif speaks; a humanist sans does the work.
+    </p>
+
+    <div class="reveal d2">
+      <span class="chip">Fraunces display</span>
+      <span class="chip">Inter body</span>
+      <span class="chip">JetBrains Mono</span>
+    </div>
+
+    <div class="actions reveal d2">
+      <button class="btn btn-primary">Start a project</button>
+      <button class="btn btn-ghost">Read the notes</button>
+    </div>
+
+    <hr class="divider reveal d3" />
+
+    <section class="grid">
+      <article class="card reveal d2">
+        <h3>Containers</h3>
+        <p>
+          Generous corner radius and a warm, diffuse shadow lift each surface off the
+          base without hard edges. Hover to feel the slow ease.
+        </p>
+      </article>
+      <article class="card reveal d3">
+        <h3>Hairlines</h3>
+        <p>
+          Dividers and borders stay near the background — structure you sense more than
+          see, keeping the composition calm and editorial.
+        </p>
+      </article>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="panel">
+      <p>
+        Body copy holds a comfortable measure at <code>--leading-normal</code> with muted
+        sand for secondary text. Accent terracotta carries calls to action and links while
+        staying AA-legible on the near-black base.
+      </p>
+      <p>
+        Apply by adding <code>data-theme="sand-terra"</code> to a root element and importing
+        <code>theme.css</code>. For Tailwind, spread <code>tailwind.tokens.js</code> into
+        <code>theme.extend</code>.
+      </p>
+
+      <div class="swatches">
+        <div class="swatch" style="background:#16110d">base</div>
+        <div class="swatch" style="background:#2a201a">surf</div>
+        <div class="swatch" style="background:#e07a4f;color:#1a1008">acc</div>
+        <div class="swatch" style="background:#f3e7d8;color:#1a1008">text</div>
+        <div class="swatch" style="background:#bda88f;color:#1a1008">muted</div>
+      </div>
+    </section>
+
+    <footer>sand-terra · no purple · WCAG AA+ · dark base</footer>
+  </main>
+</body>
+</html>

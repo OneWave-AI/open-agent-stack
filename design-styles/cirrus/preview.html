@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="cirrus">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cirrus — Design Style Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Quicksand:wght@300;400;500&family=JetBrains+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="theme.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-text-primary);
+      background: var(--color-bg-base);
+      /* Cloud/sky background: layered soft radial "clouds" over a pale sky wash */
+      background-image:
+        radial-gradient(60% 45% at 18% 22%, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0) 60%),
+        radial-gradient(55% 40% at 82% 30%, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0) 62%),
+        radial-gradient(70% 55% at 50% 96%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0) 60%),
+        linear-gradient(180deg, #e3eefb 0%, #eef4fb 45%, #f4f9fe 100%);
+      background-attachment: fixed;
+      line-height: 1.6;
+      padding: var(--space-8) var(--space-5);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .wrap { max-width: 960px; margin: 0 auto; }
+
+    .eyebrow {
+      font-family: var(--font-display);
+      font-weight: var(--weight-medium);
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      font-size: var(--text-xs);
+      color: var(--color-accent);
+    }
+
+    h1 {
+      font-family: var(--font-display);
+      font-weight: var(--weight-light);
+      font-size: var(--text-4xl);
+      letter-spacing: -0.01em;
+      margin: var(--space-3) 0 var(--space-4);
+    }
+
+    .lede {
+      font-size: var(--text-lg);
+      color: var(--color-text-muted);
+      max-width: 46ch;
+      margin-bottom: var(--space-8);
+    }
+
+    /* Frosted glass surface */
+    .card {
+      background: rgba(251, 253, 255, 0.62);
+      backdrop-filter: blur(var(--blur-frost)) saturate(140%);
+      -webkit-backdrop-filter: blur(var(--blur-frost)) saturate(140%);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-container);
+      box-shadow: var(--elevation-soft);
+      padding: var(--space-6);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: var(--space-5);
+      margin-bottom: var(--space-7);
+    }
+
+    .card h2 {
+      font-family: var(--font-display);
+      font-weight: var(--weight-medium);
+      font-size: var(--text-xl);
+      margin-bottom: var(--space-3);
+    }
+
+    .card p { color: var(--color-text-muted); font-size: var(--text-base); }
+
+    .feature {
+      box-shadow: var(--elevation-float);
+      background: rgba(251, 253, 255, 0.55);
+      backdrop-filter: blur(var(--blur-frost-strong)) saturate(150%);
+      -webkit-backdrop-filter: blur(var(--blur-frost-strong)) saturate(150%);
+      padding: var(--space-7);
+      text-align: center;
+    }
+
+    /* Divider that fades to nothing at both ends */
+    .divider {
+      height: 1px;
+      border: none;
+      margin: var(--space-7) 0;
+      background: linear-gradient(90deg,
+        rgba(227, 237, 247, 0) 0%,
+        var(--color-divider) 50%,
+        rgba(227, 237, 247, 0) 100%);
+    }
+
+    .btn-row { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; margin-top: var(--space-5); }
+
+    .btn {
+      font-family: var(--font-body);
+      font-weight: var(--weight-medium);
+      font-size: var(--text-base);
+      border-radius: var(--radius-control);
+      padding: var(--space-3) var(--space-5);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: transform var(--duration-fast) var(--easing-standard),
+                  box-shadow var(--duration-base) var(--easing-drift);
+    }
+
+    .btn-primary {
+      background: var(--color-accent);
+      color: var(--color-accent-contrast);
+      box-shadow: var(--elevation-soft);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--elevation-float); }
+
+    .btn-ghost {
+      background: rgba(251, 253, 255, 0.6);
+      color: var(--color-accent);
+      border-color: var(--color-border);
+    }
+    .btn-ghost:hover { transform: translateY(-2px); }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      background: var(--color-bg-raised);
+      border: 1px solid var(--color-border);
+      border-radius: 0.4rem;
+      padding: 0.1rem 0.4rem;
+      color: var(--color-text-primary);
+    }
+
+    .footnote { margin-top: var(--space-7); font-size: var(--text-sm); color: var(--color-text-muted); text-align: center; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <span class="eyebrow">Cirrus</span>
+    <h1>Soft skies, lighter thinking.</h1>
+    <p class="lede">A light cloud-and-sky style built on pale blues, barely-there frosted glass, and gentle floating motion. Everything breathes.</p>
+
+    <section class="grid">
+      <article class="card cirrus-floating">
+        <h2>Frosted surface</h2>
+        <p>Containers float over a soft sky wash with a backdrop blur and a large, diffuse shadow.</p>
+      </article>
+      <article class="card cirrus-floating" style="animation-delay: -2.3s;">
+        <h2>Generous radius</h2>
+        <p>Corners are rounded wide and edges stay quiet, keeping the layout calm and airy.</p>
+      </article>
+      <article class="card cirrus-floating" style="animation-delay: -4.6s;">
+        <h2>Light geometric type</h2>
+        <p>Quicksand sets the headings in a light weight; Inter carries the body with plenty of room.</p>
+      </article>
+    </section>
+
+    <hr class="divider" />
+
+    <section class="card feature">
+      <span class="eyebrow">Floating panel</span>
+      <h2 style="font-size: var(--text-2xl); margin-top: var(--space-2);">Built to feel weightless</h2>
+      <p style="max-width: 50ch; margin: var(--space-3) auto 0;">Dividers fade to nothing, contrast stays low and comfortable, and motion drifts slowly like clouds. Apply the theme with <code>data-theme="cirrus"</code>.</p>
+      <div class="btn-row" style="justify-content: center;">
+        <button class="btn btn-primary">Get started</button>
+        <button class="btn btn-ghost">View tokens</button>
+      </div>
+    </section>
+
+    <p class="footnote">Cirrus design style — light base, no purple, WCAG AA+ text contrast.</p>
+  </main>
+</body>
+</html>

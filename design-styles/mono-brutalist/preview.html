@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>mono-brutalist — preview</title>
+<style>
+  :root{
+    --ink:#000; --paper:#fff; --raised:#f2f2f2; --muted:#4a4a4a;
+    --solid:3px; --heavy:5px;
+    --fdisp:"Archivo Narrow","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+    --fbody:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;border-radius:0!important}
+  body{
+    background:var(--paper);color:var(--ink);font-family:var(--fbody);line-height:1.4;
+    /* exposed grid background */
+    background-image:
+      linear-gradient(var(--ink) 1px,transparent 1px),
+      linear-gradient(90deg,var(--ink) 1px,transparent 1px);
+    background-size:48px 48px;
+    background-position:-1px -1px;
+  }
+  .sheet{max-width:960px;margin:0 auto;background:var(--paper);
+    border-left:var(--heavy) solid var(--ink);border-right:var(--heavy) solid var(--ink);min-height:100vh;padding:0}
+  header{border-bottom:var(--heavy) solid var(--ink);padding:40px 32px 28px}
+  .kicker{font-family:var(--fbody);font-weight:700;text-transform:uppercase;letter-spacing:.24em;font-size:.75rem}
+  h1{font-family:var(--fdisp);font-weight:900;font-size:5.5rem;line-height:.9;text-transform:uppercase;letter-spacing:-.01em;margin-top:10px}
+  .sub{font-size:1rem;color:var(--muted);margin-top:14px;max-width:48ch}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:0}
+  .row>*{padding:28px 32px}
+  .row>*+*{border-left:var(--solid) solid var(--ink)}
+  section{border-bottom:var(--solid) solid var(--ink)}
+  h2{font-family:var(--fdisp);text-transform:uppercase;font-weight:700;font-size:1.75rem;letter-spacing:.01em}
+  p{margin-top:10px}
+  .card{border:var(--solid) solid var(--ink);background:var(--paper);padding:22px;box-shadow:6px 6px 0 0 var(--ink)}
+  .card h3{font-family:var(--fdisp);text-transform:uppercase;font-size:1.25rem;font-weight:700}
+  .card p{font-size:.875rem;color:var(--muted)}
+  .rule{height:0;border-top:var(--solid) solid var(--ink);margin:0}
+  .btn{display:inline-block;margin-top:18px;font-family:var(--fbody);font-weight:700;text-transform:uppercase;
+    letter-spacing:.08em;font-size:.875rem;background:var(--ink);color:var(--paper);
+    border:var(--solid) solid var(--ink);padding:12px 22px;cursor:pointer;transition:none}
+  /* signature: instant binary invert */
+  .btn:hover{background:var(--paper);color:var(--ink)}
+  .swatches{display:flex;gap:0;margin-top:8px}
+  .sw{flex:1;height:56px;border:var(--solid) solid var(--ink)}
+  .sw+.sw{border-left:0}
+  footer{padding:22px 32px;font-family:var(--fbody);text-transform:uppercase;letter-spacing:.18em;font-size:.7rem}
+</style>
+</head>
+<body>
+  <div class="sheet">
+    <header>
+      <div class="kicker">Design Style</div>
+      <h1>Mono<br>Brutalist</h1>
+      <p class="sub">Pure black and white. Maximum contrast. Hard rectangles, thick rules, oversized condensed type, instant state changes.</p>
+      <a class="btn" href="#">Invert on hover</a>
+    </header>
+
+    <section class="row">
+      <div>
+        <h2>Containers</h2>
+        <p>Flat surfaces, thick black borders, hard offset block shadows. No radius anywhere.</p>
+        <div class="card" style="margin-top:18px">
+          <h3>Card</h3>
+          <p>A bordered block with a 6px hard shadow. Nothing is rounded, nothing is soft.</p>
+        </div>
+      </div>
+      <div>
+        <h2>Type &amp; Rules</h2>
+        <p>Condensed display, plain body, black rule dividers.</p>
+        <div class="rule" style="margin-top:18px"></div>
+        <p style="margin-top:14px;font-family:var(--fbody)">Body text sits at 21:1 contrast on white.</p>
+        <div class="swatches">
+          <div class="sw" style="background:#000"></div>
+          <div class="sw" style="background:#4a4a4a"></div>
+          <div class="sw" style="background:#f2f2f2"></div>
+          <div class="sw" style="background:#fff"></div>
+        </div>
+      </div>
+    </section>
+
+    <footer>mono-brutalist · no purple · WCAG AA+ · light base</footer>
+  </div>
+</body>
+</html>

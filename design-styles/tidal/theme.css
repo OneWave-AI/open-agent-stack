@@ -1,0 +1,89 @@
+/* Tidal — ocean-depth dark theme tokens as CSS custom properties.
+   Apply by setting data-theme="tidal" on a root element (html, body, or a wrapper). */
+
+[data-theme="tidal"] {
+  /* Color */
+  --tidal-bg-base: #04141f;
+  --tidal-bg-raised: #072636;
+  --tidal-surface: #0c3a4f;
+  --tidal-text-primary: #eef9fb;
+  --tidal-text-muted: #9fc4d0;
+  --tidal-accent: #3fd0c9;
+  --tidal-accent-warm: #e8c79a;
+  --tidal-border: #16526b;
+  --tidal-divider: #1f6480;
+
+  /* Layered depth gradients */
+  --tidal-gradient-depth: linear-gradient(180deg, #072636 0%, #04141f 60%, #020c14 100%);
+  --tidal-gradient-caustic: radial-gradient(120% 80% at 50% -10%, #0c3a4f33 0%, transparent 60%);
+
+  /* Type */
+  --tidal-font-display: "Quicksand", "Nunito", "Segoe UI", system-ui, sans-serif;
+  --tidal-font-body: "Nunito", "Quicksand", "Segoe UI", system-ui, sans-serif;
+  --tidal-font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, monospace;
+
+  --tidal-text-xs: 0.75rem;
+  --tidal-text-sm: 0.875rem;
+  --tidal-text-base: 1rem;
+  --tidal-text-lg: 1.25rem;
+  --tidal-text-xl: 1.5rem;
+  --tidal-text-2xl: 2rem;
+  --tidal-text-3xl: 2.75rem;
+  --tidal-text-4xl: 3.75rem;
+
+  --tidal-weight-regular: 400;
+  --tidal-weight-medium: 500;
+  --tidal-weight-semibold: 600;
+  --tidal-weight-bold: 700;
+
+  /* Space */
+  --tidal-space-0: 0rem;
+  --tidal-space-1: 0.25rem;
+  --tidal-space-2: 0.5rem;
+  --tidal-space-3: 0.75rem;
+  --tidal-space-4: 1rem;
+  --tidal-space-5: 1.5rem;
+  --tidal-space-6: 2rem;
+  --tidal-space-7: 3rem;
+  --tidal-space-8: 4rem;
+
+  /* Radius */
+  --tidal-radius-container: 1.5rem;
+  --tidal-radius-control: 0.875rem;
+  --tidal-radius-pill: 9999px;
+
+  /* Elevation — soft caustic-light shadows */
+  --tidal-elevation-caustic-sm: 0 0.25rem 0.75rem #02101a;
+  --tidal-elevation-caustic-md: 0 0.75rem 1.75rem -0.25rem #010a12;
+  --tidal-elevation-caustic-glow: 0 0 1.5rem #3fd0c933;
+
+  /* Blur */
+  --tidal-blur-glass: 14px;
+
+  /* Motion */
+  --tidal-duration-fast: 240ms;
+  --tidal-duration-base: 480ms;
+  --tidal-duration-slow: 900ms;
+  --tidal-duration-current: 6000ms;
+  --tidal-easing-current: cubic-bezier(0.37, 0, 0.16, 1);
+  --tidal-easing-swell: cubic-bezier(0.45, 0.05, 0.25, 1);
+  --tidal-motion-signature: drift 6000ms cubic-bezier(0.37, 0, 0.16, 1) infinite alternate;
+}
+
+/* Signature slow current drift */
+@keyframes drift {
+  from {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.85;
+  }
+  to {
+    transform: translate3d(0, -0.5rem, 0);
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-theme="tidal"] {
+    --tidal-motion-signature: none;
+  }
+}

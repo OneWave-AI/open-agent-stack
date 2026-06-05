@@ -1,0 +1,9 @@
+{
+  "name": "content-engine",
+  "description": "Repurposes one source piece into posts, threads, email, and video scripts.",
+  "version": "0.1.0",
+  "author": {
+    "name": "OneWave AI",
+    "url": "https://www.onewave-ai.com"
+  }
+}

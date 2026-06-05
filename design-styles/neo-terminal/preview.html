@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en" data-theme="neo-terminal">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>neo-terminal — preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  /* Inlined neo-terminal tokens so the preview is fully self-contained. */
+  [data-theme="neo-terminal"] {
+    --nt-color-bg-base: #05080a;
+    --nt-color-bg-raised: #0a1014;
+    --nt-color-surface: #0e161b;
+    --nt-color-text-primary: #d6f5e3;
+    --nt-color-text-muted: #7fa394;
+    --nt-color-accent: #39ff8b;
+    --nt-color-accent-alt: #ffb627;
+    --nt-color-accent-danger: #ff5c5c;
+    --nt-color-border: #1d3a2f;
+    --nt-color-divider: #16302a;
+    --nt-font-body: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+    --nt-text-xs: 0.75rem; --nt-text-sm: 0.875rem; --nt-text-base: 1rem;
+    --nt-text-lg: 1.25rem; --nt-text-xl: 1.625rem; --nt-text-2xl: 2.125rem; --nt-text-3xl: 2.875rem;
+    --nt-tracking-wide: 0.08em; --nt-tracking-caps: 0.18em;
+    --nt-leading-tight: 1.15; --nt-leading-normal: 1.55;
+    --nt-space-2: 0.5rem; --nt-space-3: 0.75rem; --nt-space-4: 1rem;
+    --nt-space-5: 1.5rem; --nt-space-6: 2rem; --nt-space-7: 3rem; --nt-space-8: 4rem;
+    --nt-radius-container: 2px; --nt-radius-control: 1px;
+    --nt-elevation-panel: 0 1px 0 0 rgba(0,0,0,0.55), 0 0 0 1px rgba(57,255,139,0.06);
+    --nt-elevation-glow: 0 0 18px 0 rgba(57,255,139,0.35);
+    --nt-bg-dotgrid: radial-gradient(rgba(57,255,139,0.10) 1px, transparent 1px);
+    --nt-bg-dotgrid-size: 22px 22px;
+    --nt-bg-scanline: repeating-linear-gradient(to bottom, rgba(57,255,139,0.035) 0px, rgba(57,255,139,0.035) 1px, transparent 1px, transparent 3px);
+    --nt-duration-fast: 160ms; --nt-duration-base: 240ms;
+    --nt-duration-type: 2200ms; --nt-duration-blink: 1000ms;
+    --nt-ease-standard: cubic-bezier(0.2,0,0.2,1);
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+
+  body[data-theme="neo-terminal"] {
+    min-height: 100vh;
+    color: var(--nt-color-text-primary);
+    background-color: var(--nt-color-bg-base);
+    background-image: var(--nt-bg-scanline), var(--nt-bg-dotgrid);
+    background-size: auto, var(--nt-bg-dotgrid-size);
+    font-family: var(--nt-font-body);
+    font-size: var(--nt-text-base);
+    line-height: var(--nt-leading-normal);
+    padding: var(--nt-space-8) var(--nt-space-5);
+  }
+
+  .wrap { max-width: 960px; margin: 0 auto; }
+
+  .eyebrow {
+    color: var(--nt-color-accent);
+    font-size: var(--nt-text-xs);
+    letter-spacing: var(--nt-tracking-caps);
+    text-transform: uppercase;
+    margin: 0 0 var(--nt-space-3);
+  }
+  .eyebrow::before { content: "> "; color: var(--nt-color-accent-alt); }
+
+  h1 {
+    font-size: var(--nt-text-3xl);
+    line-height: var(--nt-leading-tight);
+    letter-spacing: var(--nt-tracking-wide);
+    margin: 0 0 var(--nt-space-4);
+    font-weight: 700;
+  }
+
+  /* Signature motion: typewriter line reveal */
+  .typeline {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 0.6ch solid var(--nt-color-accent-alt);
+    max-width: 0;
+    animation:
+      nt-type var(--nt-duration-type) steps(28, end) 0.2s forwards,
+      nt-blink var(--nt-duration-blink) steps(2, jump-none) infinite;
+    color: var(--nt-color-accent);
+  }
+  @keyframes nt-type { to { max-width: 30ch; } }
+  @keyframes nt-blink { 50% { border-color: transparent; } }
+
+  .lead { color: var(--nt-color-text-muted); max-width: 62ch; margin: var(--nt-space-4) 0 var(--nt-space-7); }
+
+  /* Bordered panel container with corner ticks */
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--nt-space-5); }
+
+  .panel {
+    position: relative;
+    background-color: var(--nt-color-surface);
+    border: 1px solid var(--nt-color-border);
+    border-radius: var(--nt-radius-container);
+    box-shadow: var(--nt-elevation-panel);
+    padding: var(--nt-space-5);
+  }
+  /* corner ticks */
+  .panel::before, .panel::after {
+    content: ""; position: absolute; width: 10px; height: 10px;
+    border-color: var(--nt-color-accent); border-style: solid; border-width: 0;
+  }
+  .panel::before { top: -1px; left: -1px; border-top-width: 1px; border-left-width: 1px; }
+  .panel::after { bottom: -1px; right: -1px; border-bottom-width: 1px; border-right-width: 1px; }
+
+  .panel-label {
+    font-size: var(--nt-text-xs);
+    letter-spacing: var(--nt-tracking-wide);
+    text-transform: uppercase;
+    color: var(--nt-color-accent-alt);
+    margin: 0 0 var(--nt-space-3);
+  }
+  .panel h2 { font-size: var(--nt-text-lg); margin: 0 0 var(--nt-space-2); font-weight: 500; }
+  .panel p { margin: 0; color: var(--nt-color-text-muted); font-size: var(--nt-text-sm); }
+
+  /* dotted / dashed divider */
+  .divider {
+    border: 0; height: 0;
+    border-top: 1px dashed var(--nt-color-divider);
+    margin: var(--nt-space-7) 0;
+  }
+  .divider-dotted { border-top-style: dotted; }
+
+  .row { display: flex; gap: var(--nt-space-3); align-items: center; flex-wrap: wrap; margin-top: var(--nt-space-5); }
+
+  /* Buttons */
+  .btn {
+    font-family: inherit; font-size: var(--nt-text-sm);
+    letter-spacing: var(--nt-tracking-wide); text-transform: uppercase;
+    padding: var(--nt-space-3) var(--nt-space-5);
+    border-radius: var(--nt-radius-control);
+    cursor: pointer;
+    transition: box-shadow var(--nt-duration-base) var(--nt-ease-standard),
+                background-color var(--nt-duration-fast) var(--nt-ease-standard);
+  }
+  .btn-primary {
+    background-color: var(--nt-color-accent);
+    color: #04130b; border: 1px solid var(--nt-color-accent);
+    font-weight: 700;
+  }
+  .btn-primary:hover, .btn-primary:focus-visible { box-shadow: var(--nt-elevation-glow); outline: none; }
+  .btn-ghost {
+    background-color: transparent;
+    color: var(--nt-color-accent);
+    border: 1px solid var(--nt-color-border);
+  }
+  .btn-ghost:hover, .btn-ghost:focus-visible {
+    border-color: var(--nt-color-accent);
+    box-shadow: var(--nt-elevation-glow); outline: none;
+  }
+
+  .chip {
+    font-size: var(--nt-text-xs); letter-spacing: var(--nt-tracking-wide);
+    padding: var(--nt-space-2) var(--nt-space-3);
+    border: 1px solid var(--nt-color-border); border-radius: var(--nt-radius-control);
+    color: var(--nt-color-text-muted);
+  }
+  .chip-amber { color: var(--nt-color-accent-alt); border-color: var(--nt-color-accent-alt); }
+
+  /* Console block */
+  .console {
+    margin-top: var(--nt-space-5);
+    background-color: var(--nt-color-bg-raised);
+    border: 1px solid var(--nt-color-border);
+    border-radius: var(--nt-radius-container);
+    padding: var(--nt-space-4) var(--nt-space-5);
+    font-size: var(--nt-text-sm);
+  }
+  .console .ok { color: var(--nt-color-accent); }
+  .console .warn { color: var(--nt-color-accent-alt); }
+  .console .err { color: var(--nt-color-accent-danger); }
+  .console .dim { color: var(--nt-color-text-muted); }
+  .cursor {
+    display: inline-block; width: 0.6ch; height: 1em; vertical-align: text-bottom;
+    background: var(--nt-color-accent);
+    animation: nt-cell-blink var(--nt-duration-blink) steps(2, jump-none) infinite;
+  }
+  @keyframes nt-cell-blink { 50% { opacity: 0; } }
+
+  footer { margin-top: var(--nt-space-8); color: var(--nt-color-text-muted); font-size: var(--nt-text-xs); letter-spacing: var(--nt-tracking-wide); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .typeline { animation: none; max-width: 30ch; border-right-color: transparent; }
+    .cursor { animation: none; }
+  }
+</style>
+</head>
+<body data-theme="neo-terminal">
+  <main class="wrap">
+    <p class="eyebrow">neo-terminal // ai-console</p>
+    <h1><span class="typeline">initializing agent runtime</span></h1>
+    <p class="lead">
+      Phosphor-green and amber on near-black. Dot-grid plus scanline field,
+      bordered panels with corner ticks, dashed dividers, monospace throughout.
+      Built for AI consoles, agent dashboards, and cyber tooling.
+    </p>
+
+    <section class="grid">
+      <article class="panel">
+        <p class="panel-label">[ node.01 ]</p>
+        <h2>Process monitor</h2>
+        <p>Live token stream and run state. Glow rises on focus to signal the active surface.</p>
+      </article>
+      <article class="panel">
+        <p class="panel-label">[ node.02 ]</p>
+        <h2>Context window</h2>
+        <p>Bordered frame with corner ticks reads as a discrete terminal pane in a tiling layout.</p>
+      </article>
+      <article class="panel">
+        <p class="panel-label">[ node.03 ]</p>
+        <h2>Signal log</h2>
+        <p>High-contrast text on a dim cool surface keeps long readouts legible at AA+ levels.</p>
+      </article>
+    </section>
+
+    <hr class="divider divider-dotted" />
+
+    <div class="row">
+      <button class="btn btn-primary">Run agent</button>
+      <button class="btn btn-ghost">Inspect</button>
+      <span class="chip">status: idle</span>
+      <span class="chip chip-amber">queue: 3</span>
+    </div>
+
+    <div class="console">
+      <div><span class="dim">$</span> agent --start runtime</div>
+      <div><span class="ok">ok</span> phosphor link established</div>
+      <div><span class="warn">warn</span> amber channel at 72% buffer</div>
+      <div><span class="err">err</span> none</div>
+      <div><span class="dim">$</span> <span class="cursor"></span></div>
+    </div>
+
+    <hr class="divider" />
+
+    <footer>theme: neo-terminal &nbsp;|&nbsp; contrast: WCAG AA+ &nbsp;|&nbsp; no purple</footer>
+  </main>
+</body>
+</html>
