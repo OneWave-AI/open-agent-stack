@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Open Agent Stack — OneWave AI</title>
+<meta name="description" content="Open-source plugins, managed agents, multi-agent orchestrators, ChatGPT workspace agents, and design tokens for Claude Code, the Agent SDK, and any AI tool." />
+<style>
+  :root{
+    --bg:#100e0b; --bg2:#16130f; --raised:#1d1915; --line:#2c2620;
+    --text:#f0e9df; --muted:#a89a88; --faint:#6f6354;
+    --sand:#d8c4a0; --terra:#c0653f; --terra2:#d97a4e;
+    --teal:#3fb6a8; --amber:#e0a14e;
+    --maxw:1140px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    line-height:1.55; -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--terra2);font-weight:600}
+  h2{font-size:clamp(26px,3.4vw,40px);letter-spacing:-.02em;line-height:1.1;margin:.4em 0 .3em}
+  h3{font-size:18px;letter-spacing:-.01em}
+  .sub{color:var(--muted);max-width:60ch}
+
+  /* ---- ambient page background ---- */
+  .ambient{position:fixed;inset:0;z-index:-1;overflow:hidden}
+  .ambient::before,.ambient::after{content:"";position:absolute;border-radius:50%;filter:blur(120px);opacity:.5}
+  .ambient::before{width:60vw;height:60vw;left:-15vw;top:-20vw;background:radial-gradient(circle,#3a2a1e,transparent 70%)}
+  .ambient::after{width:50vw;height:50vw;right:-12vw;bottom:-10vw;background:radial-gradient(circle,#23332f,transparent 70%)}
+
+  /* ---- nav ---- */
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);
+      background:rgba(16,14,11,.72);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;letter-spacing:-.01em}
+  .brand .dot{width:22px;height:22px;border-radius:6px;
+    background:linear-gradient(135deg,var(--terra),var(--sand))}
+  .navlinks{display:flex;gap:26px;font-size:14px;color:var(--muted)}
+  .navlinks a:hover{color:var(--text)}
+  @media(max-width:760px){.navlinks{display:none}}
+
+  /* ---- hero ---- */
+  header{padding:86px 0 64px;text-align:center}
+  header h1{font-size:clamp(40px,6.6vw,76px);letter-spacing:-.035em;line-height:1.02;font-weight:680}
+  header h1 .grad{background:linear-gradient(100deg,var(--sand),var(--terra2) 60%,var(--teal));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  header p{margin:22px auto 0;max-width:64ch;color:var(--muted);font-size:clamp(15px,1.7vw,19px)}
+  .stat-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+  .stat{border:1px solid var(--line);background:var(--raised);border-radius:12px;padding:12px 18px;min-width:104px}
+  .stat b{display:block;font-size:24px;letter-spacing:-.02em}
+  .stat span{font-size:12px;color:var(--faint);text-transform:uppercase;letter-spacing:.1em}
+  .cta{display:inline-flex;align-items:center;gap:9px;margin-top:38px;
+    background:var(--terra);color:#160d08;font-weight:600;padding:13px 22px;border-radius:11px;
+    transition:transform .2s ease,background .2s ease}
+  .cta:hover{transform:translateY(-2px);background:var(--terra2)}
+  .install{margin-top:18px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:13px;
+    color:var(--sand);background:#0c0a08;border:1px solid var(--line);border-radius:10px;
+    padding:11px 16px;display:inline-block}
+
+  /* ---- sections ---- */
+  section{padding:66px 0}
+  .sec-head{margin-bottom:34px}
+  .grid{display:grid;gap:18px}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:900px){.g3{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.g3,.g2{grid-template-columns:1fr}}
+
+  .card{border:1px solid var(--line);background:var(--raised);border-radius:16px;padding:22px;
+    position:relative;overflow:hidden;transition:transform .25s ease,border-color .25s ease}
+  .card:hover{transform:translateY(-4px);border-color:#3d352b}
+  .card .tag{font-family:ui-monospace,monospace;font-size:12px;color:var(--terra2)}
+  .card h3{margin:8px 0 6px}
+  .card p{font-size:14px;color:var(--muted)}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:13px}
+  .chip{font-size:11px;letter-spacing:.02em;color:var(--sand);border:1px solid var(--line);
+    background:#0e0c0a;border-radius:999px;padding:3px 9px}
+
+  /* ---- design-style preview cards: each renders its real aesthetic ---- */
+  .styles{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  @media(max-width:900px){.styles{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.styles{grid-template-columns:1fr}}
+  .sw{border-radius:16px;min-height:188px;padding:20px;position:relative;overflow:hidden;
+    display:flex;flex-direction:column;justify-content:flex-end;border:1px solid var(--line)}
+  .sw .name{font-weight:600;font-size:15px;letter-spacing:-.01em;position:relative;z-index:2}
+  .sw .desc{font-size:12px;margin-top:3px;position:relative;z-index:2;opacity:.85}
+
+  /* 1 sand-terra */
+  .s-sand{background:radial-gradient(120% 120% at 20% 10%,#2a2017,#140f0a 70%);color:var(--sand)}
+  .s-sand::after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;
+    right:-30px;top:-30px;background:radial-gradient(circle,#c0653f88,transparent 70%);filter:blur(8px)}
+  .s-sand::before{content:"";position:absolute;inset:0;opacity:.06;
+    background-image:radial-gradient(#fff 1px,transparent 1px);background-size:4px 4px}
+  /* 2 liquid-glass */
+  .s-glass{background:linear-gradient(135deg,#15302e,#1a1726);color:#eafdfb}
+  .s-glass .pane{position:absolute;inset:14px;border-radius:14px;z-index:1;
+    background:rgba(255,255,255,.08);backdrop-filter:blur(10px);
+    border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.25)}
+  .s-glass::before{content:"";position:absolute;width:130px;height:130px;border-radius:50%;
+    left:-20px;bottom:-30px;background:radial-gradient(circle,var(--teal),transparent 70%);filter:blur(6px)}
+  .s-glass::after{content:"";position:absolute;width:110px;height:110px;border-radius:50%;
+    right:10px;top:-20px;background:radial-gradient(circle,#e0a14e,transparent 70%);filter:blur(10px)}
+  /* 3 mono-brutalist */
+  .s-mono{background:#f4f1ea;color:#0a0a0a;border:2px solid #0a0a0a}
+  .s-mono::before{content:"";position:absolute;inset:0;opacity:.9;
+    background-image:linear-gradient(#0a0a0a 1px,transparent 1px);background-size:100% 22px}
+  .s-mono .name,.s-mono .desc{font-family:ui-monospace,monospace}
+  .s-mono .desc{opacity:.7}
+  /* 4 aurora-mesh */
+  .s-aurora{color:#0c1413;
+    background:
+      radial-gradient(60% 60% at 15% 20%,#3fb6a8aa,transparent 60%),
+      radial-gradient(55% 55% at 85% 25%,#e0a14ecc,transparent 60%),
+      radial-gradient(70% 70% at 60% 90%,#d97a4ebb,transparent 60%),
+      #0f1a18;
+    background-size:200% 200%;animation:mesh 14s ease-in-out infinite}
+  @keyframes mesh{0%,100%{background-position:0% 0%}50%{background-position:100% 100%}}
+  .s-aurora .name,.s-aurora .desc{color:#08100f}
+  /* 5 neo-terminal */
+  .s-term{background:#070a07;color:#7df08a;font-family:ui-monospace,monospace}
+  .s-term::before{content:"";position:absolute;inset:0;opacity:.25;
+    background-image:radial-gradient(#1f5a2a 1px,transparent 1px);background-size:14px 14px}
+  .s-term::after{content:"";position:absolute;inset:0;opacity:.5;pointer-events:none;
+    background:repeating-linear-gradient(transparent 0 3px,rgba(0,0,0,.35) 3px 4px)}
+  .s-term .name::before{content:"> "}
+  /* 6 tidal / ocean */
+  .s-tidal{color:#dff6f4;
+    background:linear-gradient(180deg,#0b3a4a,#072430 55%,#04161e);}
+  .s-tidal::before{content:"";position:absolute;inset:0;opacity:.5;
+    background:radial-gradient(80% 40% at 50% -10%,#3fb6a855,transparent 60%)}
+  .s-tidal::after{content:"";position:absolute;left:-10%;right:-10%;bottom:34px;height:60px;
+    background:radial-gradient(50% 100% at 50% 0,#7fe3da33,transparent 70%);filter:blur(4px)}
+  /* 7 cirrus / cloud */
+  .s-cirrus{color:#26303a;
+    background:linear-gradient(180deg,#eef6fd,#dcebf7);
+    box-shadow:inset 0 -40px 60px #ffffff}
+  .s-cirrus::before{content:"";position:absolute;width:150px;height:80px;border-radius:50%;
+    left:18px;top:24px;background:#ffffff;filter:blur(16px);opacity:.9}
+  .s-cirrus::after{content:"";position:absolute;width:120px;height:70px;border-radius:50%;
+    right:10px;top:54px;background:#ffffff;filter:blur(14px);opacity:.75}
+  .s-cirrus .desc{color:#54616e}
+
+  /* orchestrator team viz */
+  .team{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+  .node{font-size:11px;border:1px solid var(--line);background:#0e0c0a;border-radius:8px;
+    padding:6px 10px;color:var(--sand)}
+  .lead{border-color:var(--terra);color:var(--terra2);font-weight:600}
+  .modes{display:flex;gap:8px;margin-top:12px}
+  .mode{font-size:11px;color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:4px 9px}
+
+  footer{border-top:1px solid var(--line);padding:48px 0;margin-top:30px;color:var(--muted);font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:18px}
+  footer a:hover{color:var(--text)}
+
+  /* reveal on scroll */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none}.s-aurora{animation:none}}
+</style>
+</head>
+<body>
+<div class="ambient"></div>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top"><span class="dot"></span> Open Agent Stack</a>
+    <div class="navlinks">
+      <a href="#plugins">Plugins</a>
+      <a href="#agents">Agents</a>
+      <a href="#chatgpt">ChatGPT</a>
+      <a href="#orchestrators">Orchestrators</a>
+      <a href="#styles">Design</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top">
+  <div class="wrap">
+    <div class="eyebrow">OneWave AI · Open Source</div>
+    <h1>The <span class="grad">Open Agent Stack</span></h1>
+    <p>Plugins, managed agents, multi-agent orchestrators, ChatGPT workspace agents, and design tokens — for Claude Code, the Agent SDK, and any AI tool.</p>
+    <div class="stat-row">
+      <div class="stat"><b>5</b><span>Plugins</span></div>
+      <div class="stat"><b>5</b><span>Agents</span></div>
+      <div class="stat"><b>5</b><span>ChatGPT</span></div>
+      <div class="stat"><b>2</b><span>Orchestrators</span></div>
+      <div class="stat"><b>7</b><span>Design styles</span></div>
+    </div>
+    <div><a class="cta" href="https://github.com/OneWave-AI/open-agent-stack">View on GitHub →</a></div>
+    <div class="install">claude plugin marketplace add OneWave-AI/open-agent-stack</div>
+  </div>
+</header>
+
+<section id="plugins">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Plugins</div>
+      <h2>Installable command bundles</h2>
+      <p class="sub">Skill and command packs you add with one line. Web-search wired where it earns its keep.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><div class="tag">ai-news-hq</div><h3>AI News HQ</h3><p>A news crew — scout, analyst, editor — that tracks the field and ships a ranked briefing on a cadence.</p><div class="chips"><span class="chip">web search</span><span class="chip">scheduled</span></div></div>
+      <div class="card reveal"><div class="tag">release-radar</div><h3>Release Radar</h3><p>Tracks model and tool releases, changelogs, and deprecations; flags what hits your stack.</p><div class="chips"><span class="chip">web search</span></div></div>
+      <div class="card reveal"><div class="tag">competitor-watch</div><h3>Competitor Watch</h3><p>Monitors competitor sites, pricing, and content; reports the diffs.</p><div class="chips"><span class="chip">web search</span></div></div>
+      <div class="card reveal"><div class="tag">content-engine</div><h3>Content Engine</h3><p>Repurposes one source piece into posts, threads, email, and video scripts.</p></div>
+      <div class="card reveal"><div class="tag">brand-kit</div><h3>Brand Kit</h3><p>Applies a design style — tokens and theme — and exposes brand commands.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="agents">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Managed Agents</div>
+      <h2>Single-purpose autonomous workers</h2>
+      <p class="sub">Clone, set keys, run. Each ships a Claude Agent SDK definition and a portable spec.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><div class="tag">market-researcher</div><h3>Market Researcher</h3><p>Researches a market, segment, or company into a structured brief.</p><div class="chips"><span class="chip">web search</span></div></div>
+      <div class="card reveal"><div class="tag">news-curator</div><h3>News Curator</h3><p>Pulls and ranks the day's relevant developments for a topic.</p><div class="chips"><span class="chip">web search</span></div></div>
+      <div class="card reveal"><div class="tag">lead-enricher</div><h3>Lead Enricher</h3><p>Turns a lead or account into a clean, enriched record from public sources.</p><div class="chips"><span class="chip">web search</span></div></div>
+      <div class="card reveal"><div class="tag">content-drafter</div><h3>Content Drafter</h3><p>Drafts long-form content from a brief, with sources cited.</p><div class="chips"><span class="chip">web search</span></div></div>
+      <div class="card reveal"><div class="tag">seo-auditor</div><h3>SEO Auditor</h3><p>Audits a page or site and returns prioritized fixes.</p><div class="chips"><span class="chip">web search</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="chatgpt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">ChatGPT Workspace Agents</div>
+      <h2>Connectors · schedules · knowledge · skills · channels</h2>
+      <p class="sub">Always-on GPT templates that run on a cadence and deliver through Slack and email.</p>
+    </div>
+    <div class="grid g3">
+      <div class="card reveal"><div class="tag">briefing-desk</div><h3>Briefing Desk</h3><p>A personalized briefing pulled fresh and delivered on a cadence.</p><div class="chips"><span class="chip">web</span><span class="chip">daily</span><span class="chip">email + Slack</span></div></div>
+      <div class="card reveal"><div class="tag">inbox-chief-of-staff</div><h3>Inbox Chief of Staff</h3><p>Triages mail, drafts in your voice, negotiates calendar times.</p><div class="chips"><span class="chip">Gmail</span><span class="chip">Calendar</span><span class="chip">email</span></div></div>
+      <div class="card reveal"><div class="tag">pipeline-pulse</div><h3>Pipeline Pulse</h3><p>Reads the CRM, flags stalled deals, posts a movement digest.</p><div class="chips"><span class="chip">Salesforce</span><span class="chip">Slack</span></div></div>
+      <div class="card reveal"><div class="tag">doc-negotiator</div><h3>Doc Negotiator</h3><p>Reviews contracts from your drive; redlines and risk flags.</p><div class="chips"><span class="chip">Drive</span><span class="chip">Notion</span></div></div>
+      <div class="card reveal"><div class="tag">standup-synthesizer</div><h3>Standup Synthesizer</h3><p>Pulls updates across tools into one standup and action list.</p><div class="chips"><span class="chip">Slack</span><span class="chip">Atlassian</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="orchestrators">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Orchestrators</div>
+      <h2>A lead agent plus a team of five</h2>
+      <p class="sub">Two-layer multi-agent systems, with human-in-the-loop and out-of-the-loop modes.</p>
+    </div>
+    <div class="grid g2">
+      <div class="card reveal">
+        <div class="tag">sales-orchestrator</div><h3>Sales Orchestrator</h3>
+        <p>Lead coordinates a five-agent sales team end to end.</p>
+        <div class="team">
+          <span class="node lead">lead</span><span class="node">prospector</span><span class="node">researcher</span>
+          <span class="node">writer</span><span class="node">sequencer</span><span class="node">qualifier</span>
+        </div>
+        <div class="modes"><span class="mode">human-in-the-loop</span><span class="mode">out-of-the-loop</span></div>
+      </div>
+      <div class="card reveal">
+        <div class="tag">marketing-orchestrator</div><h3>Marketing Orchestrator</h3>
+        <p>Lead coordinates a five-agent marketing team from brief to publish.</p>
+        <div class="team">
+          <span class="node lead">lead</span><span class="node">content</span><span class="node">social</span>
+          <span class="node">seo</span><span class="node">competitor-intel</span><span class="node">analytics</span>
+        </div>
+        <div class="modes"><span class="mode">human-in-the-loop</span><span class="mode">out-of-the-loop</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="styles">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="eyebrow">Design Styles</div>
+      <h2>Seven token themes, seven distinct worlds</h2>
+      <p class="sub">Each is its own system across color, contrast, containers, backgrounds, dividers, and motion. Previews below render in their actual style.</p>
+    </div>
+    <div class="styles">
+      <div class="sw s-sand reveal"><div class="name">sand-terra</div><div class="desc">warm editorial-organic</div></div>
+      <div class="sw s-glass reveal"><div class="pane"></div><div class="name">liquid-glass</div><div class="desc">translucent depth</div></div>
+      <div class="sw s-mono reveal"><div class="name">mono-brutalist</div><div class="desc">stark monochrome</div></div>
+      <div class="sw s-aurora reveal"><div class="name">aurora-mesh</div><div class="desc">soft futuristic</div></div>
+      <div class="sw s-term reveal"><div class="name">neo-terminal</div><div class="desc">AI-console / cyber</div></div>
+      <div class="sw s-tidal reveal"><div class="name">tidal</div><div class="desc">ocean depth</div></div>
+      <div class="sw s-cirrus reveal"><div class="name">cirrus</div><div class="desc">cloud / sky</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div><strong>Open Agent Stack</strong> · MIT · by <a href="https://www.onewave-ai.com">OneWave AI</a></div>
+    <div>
+      <a href="https://github.com/OneWave-AI/open-agent-stack">GitHub</a> ·
+      <a href="https://github.com/OneWave-AI/claude-skills">Claude Skills</a> ·
+      <a href="https://www.onewave-ai.com">onewave-ai.com</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%3*60)+'ms';io.observe(el)});
+</script>
+</body>
+</html>
