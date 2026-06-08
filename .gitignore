@@ -1,0 +1,14 @@
+# Secrets — never commit real env files (templates are .env.example)
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Dependencies / build
+node_modules/
+dist/
+.DS_Store
+
+# Workflow scratch
+.workflow-*.js
