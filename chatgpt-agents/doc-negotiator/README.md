@@ -42,7 +42,7 @@ The agent reads documents from these connectors. Configure read scopes only; the
 - Microsoft SharePoint — read access to the legal/contracts document library. Used to read DOCX and PDF stored in SharePoint and OneDrive for Business.
 - Notion — read access to the contracts/policy databases and pages. Used to read policy pages and contract-tracking databases.
 
-See `references/connectors.md` for per-connector scope details and least-privilege setup.
+
 
 ## Knowledge
 
@@ -53,11 +53,11 @@ The agent is scoped to a narrow, named set of sources so it does not browse the 
 - One Notion workspace section: the contracts database plus the policy pages.
 - A negotiation playbook document (standard/fallback positions and approved clause language) used as the comparison baseline.
 
-What it should NOT be scoped to: HR records, finance, customer data, or anything outside the contracts surface. Keep knowledge to the minimum folders and databases needed for review. See `references/knowledge.md`.
+What it should NOT be scoped to: HR records, finance, customer data, or anything outside the contracts surface. Keep knowledge to the minimum folders and databases needed for review.
 
 ## Skills
 
-Two named, reusable workflows. Full step detail in `references/skills.md`.
+Two named, reusable workflows.
 
 ### redline-pass
 
@@ -75,14 +75,14 @@ Two named, reusable workflows. Full step detail in `references/skills.md`.
 
 Default: on-demand. The agent runs only when triggered from a channel.
 
-To change to a recurring run (for example, a weekly sweep of newly added contracts), set a schedule in the agent's Schedule panel with a cron expression and a default prompt such as "Review every contract added to the contracts folder in the last 7 days and produce a redline-pass memo for each." Recommended starting cadence: weekly, Monday 08:00 in the workspace timezone. See `references/schedule.md`.
+To change to a recurring run (for example, a weekly sweep of newly added contracts), set a schedule in the agent's Schedule panel with a cron expression and a default prompt such as "Review every contract added to the contracts folder in the last 7 days and produce a redline-pass memo for each." Recommended starting cadence: weekly, Monday 08:00 in the workspace timezone.
 
 ## Channels
 
 - Chat: trigger by opening the agent and naming or attaching a document. The agent replies in-thread with the memo. This is the default channel for interactive review.
 - Email: forward or send a document to the agent's workspace email address. The agent reads the attachment or the linked document, runs `redline-pass`, and replies to the sender with the memo in the email body (and as an attachment when the memo is long). It never emails anyone other than the requesting sender and never contacts the counterparty.
 
-Delivery rule: output goes back to the person who triggered the run, in the same channel. See `references/channels.md`.
+Delivery rule: output goes back to the person who triggered the run, in the same channel.
 
 ## Conversation starters
 
@@ -102,4 +102,4 @@ This template maps cleanly to the OpenAI Assistants API:
 - Schedule -> an external cron/job runner that creates a thread and a run on the defined cadence.
 - Channels -> your own chat UI and an inbound-email handler that each create a thread, add the message, and start a run.
 
-See `references/portability.md` for a concrete mapping and a minimal request shape.
+
