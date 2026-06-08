@@ -2,8 +2,6 @@
 
 Standalone autonomous agents — each a single-purpose worker with a defined role, a tool list, web-search wiring, and a `.env.example` for keys. Built for open-source adoption: clone, set keys, run.
 
-> Scaffolding — folders and specs below; artifacts being filled in.
-
 | Agent | Role | Web search |
 |-------|------|:---:|
 | `market-researcher` | Researches a market, segment, or company and returns a structured brief. | yes |

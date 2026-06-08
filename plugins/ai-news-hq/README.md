@@ -2,8 +2,6 @@
 
 An AI-news team and HQ inside Claude Code. A small crew of agents tracks the AI field with web search, ranks what actually matters, and ships a briefing on a cadence — so you stay current without doom-scrolling ten feeds.
 
-> Scaffolding — spec and sources are real; agent wiring being filled in.
-
 ## The crew
 
 | Agent | Owns |

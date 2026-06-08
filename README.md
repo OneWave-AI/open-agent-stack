@@ -4,7 +4,7 @@ Open-source plugins, managed agents, multi-agent orchestrators, and design token
 
 Built and maintained by [OneWave AI](https://www.onewave-ai.com). Companion to the [Claude Skills Library](https://github.com/OneWave-AI/claude-skills).
 
-> **Status: scaffolding.** The structure and standards are in place; artifacts are being filled in. Watch the repo to follow along.
+MIT-licensed. Every artifact below ships production-ready with its own README — no stubs, no dead placeholders.
 
 ---
 

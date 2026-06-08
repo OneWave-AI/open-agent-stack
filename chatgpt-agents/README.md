@@ -4,7 +4,6 @@ Five ready-to-use ChatGPT **Workspace Agent** templates. Workspace Agents are Op
 
 Each template defines all five so it's drop-in. Where a connector needs auth or a key, a `.env.example` and setup note are included. Each leans into a distinct capability so they're genuinely different tools, not one chatbot five times.
 
-> Scaffolding — specs below; templates being filled in.
 > Note: Workspace Agents are in research preview (Business / Enterprise / Edu); custom GPTs convert to them over time. Templates are written to port to the OpenAI Assistants API too.
 
 | Template | What makes it unique | Connectors | Schedule | Channel |

@@ -5,8 +5,6 @@ Multi-agent systems. Each orchestrator is a **lead agent** that dispatches a **t
 - **Human-in-the-loop (HITL)** — the lead pauses for approval at defined gates (plan, before outreach, before publish).
 - **Out-of-the-loop** — the lead runs the full cycle autonomously and reports at the end.
 
-> Scaffolding — folders and team specs below; artifacts being filled in.
-
 ## `sales-orchestrator`
 
 Lead agent coordinating a 5-agent sales team:

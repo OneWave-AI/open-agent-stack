@@ -4,7 +4,6 @@ Seven universal design-token themes, each a genuinely distinct visual system —
 
 Each style ships a token set (W3C design-tokens JSON), a live theme preview, and exports (Tailwind config + CSS variables) so it drops into any stack.
 
-> Scaffolding — specs below; token sets being filled in.
 > House rules: **no purple**, accessible contrast (WCAG AA+), motion that respects `prefers-reduced-motion`.
 
 ## Every style is defined across these dimensions
