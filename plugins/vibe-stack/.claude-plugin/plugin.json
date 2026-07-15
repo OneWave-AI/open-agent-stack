@@ -1,0 +1,9 @@
+{
+  "name": "vibe-stack",
+  "description": "Idea to shipped app in three moves: scaffold with an opinionated stack and a real design system, de-AI the output so it looks human-made, deploy clean.",
+  "version": "0.1.0",
+  "author": {
+    "name": "OneWave AI",
+    "url": "https://www.onewave-ai.com"
+  }
+}

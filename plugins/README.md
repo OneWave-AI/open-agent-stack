@@ -9,5 +9,8 @@ Installable command + skill bundles. Each is a folder with its own `.claude-plug
 | `competitor-watch` | Monitors competitor sites, pricing pages, and content; reports diffs. | yes |
 | `content-engine` | Repurposes one source piece into posts, threads, email, and video scripts. | optional |
 | `brand-kit` | Applies a OneWave design style (tokens + theme) and exposes brand commands. | no |
+| `sales-desk` | The rep's daily loop: pre-call briefs, pipeline hygiene, account snapshots, post-call follow-ups. | yes |
+| `vibe-stack` | Idea to shipped app: scaffold with a design-token theme, de-AI polish pass, clean Vercel deploy. | no |
+| `market-desk` | Personal equity-research desk: ticker briefs, portfolio reviews, earnings prep. Research, not advice. | yes |
 
 Install any one with `claude plugin install <name>` after adding the marketplace (see root README).

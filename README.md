@@ -20,7 +20,7 @@ It is the bundle-and-build companion to `claude-skills` (which stays single-file
 
 | Directory | What it holds | Count |
 |-----------|---------------|-------|
-| [`plugins/`](plugins) | Installable command + skill bundles | 5 |
+| [`plugins/`](plugins) | Installable command + skill bundles | 8 |
 | [`agents/`](agents) | Managed autonomous agents (web-search enabled) | 5 |
 | [`chatgpt-agents/`](chatgpt-agents) | ChatGPT / GPT agent templates | 5 |
 | [`orchestrators/`](orchestrators) | Multi-agent systems — a lead + a team of 5 sub-agents | 2 |

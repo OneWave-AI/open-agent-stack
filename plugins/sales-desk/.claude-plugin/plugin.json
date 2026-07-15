@@ -1,0 +1,9 @@
+{
+  "name": "sales-desk",
+  "description": "The rep's daily loop as one plugin: pre-call briefs, pipeline hygiene, account snapshots, and post-call follow-ups that write themselves.",
+  "version": "0.1.0",
+  "author": {
+    "name": "OneWave AI",
+    "url": "https://www.onewave-ai.com"
+  }
+}

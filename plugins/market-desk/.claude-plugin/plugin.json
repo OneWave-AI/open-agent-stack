@@ -1,0 +1,9 @@
+{
+  "name": "market-desk",
+  "description": "A personal equity-research desk: one-page ticker briefs, portfolio risk reviews, and earnings-season prep. Research and analysis only -- not financial advice.",
+  "version": "0.1.0",
+  "author": {
+    "name": "OneWave AI",
+    "url": "https://www.onewave-ai.com"
+  }
+}
