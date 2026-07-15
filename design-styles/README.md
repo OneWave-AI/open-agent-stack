@@ -4,6 +4,8 @@ Seven universal design-token themes, each a genuinely distinct visual system —
 
 Each style ships a token set (W3C design-tokens JSON), a live theme preview, and exports (Tailwind config + CSS variables) so it drops into any stack.
 
+**One-command install:** the [`design-style-installer`](https://github.com/OneWave-AI/claude-skills/tree/main/design-style-installer) skill in the Claude Skills Library pulls any of these themes into a project, wires the tokens into Tailwind/CSS, and repaints existing components to match. Related skills there: [`design-tokens-sync`](https://github.com/OneWave-AI/claude-skills/tree/main/design-tokens-sync), [`dark-mode-converter`](https://github.com/OneWave-AI/claude-skills/tree/main/dark-mode-converter), [`motion-language-designer`](https://github.com/OneWave-AI/claude-skills/tree/main/motion-language-designer), [`typography-scale-builder`](https://github.com/OneWave-AI/claude-skills/tree/main/typography-scale-builder).
+
 > House rules: **no purple**, accessible contrast (WCAG AA+), motion that respects `prefers-reduced-motion`.
 
 ## Every style is defined across these dimensions

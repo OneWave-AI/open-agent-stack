@@ -45,7 +45,7 @@ Each artifact carries its own README with what it does, when to use it, required
 
 ## The OneWave open-source constellation
 
-- [claude-skills](https://github.com/OneWave-AI/claude-skills) — 172 single-file skills, zero dependencies
+- [claude-skills](https://github.com/OneWave-AI/claude-skills) — 193 single-file skills, zero dependencies
 - **open-agent-stack** (this repo) — plugins, agents, orchestrators, design tokens
 - More at [onewave-ai.com/open-source](https://www.onewave-ai.com)
 - Want your team trained on agents? [In-person and virtual AI trainings, bootcamps, and workshops](https://www.onewave-ai.com/ai-training) from the OneWave team, including the [Claude Bootcamp](https://www.onewave-ai.com/claude-bootcamp)
