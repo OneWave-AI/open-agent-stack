@@ -4,7 +4,7 @@ Production-ready plugins, managed agents, multi-agent orchestrators, and design 
 
 27 artifacts. MIT-licensed. Every one ships with its own README, real prompts, and a working install path — no stubs, no dead placeholders.
 
-Built and maintained by [OneWave AI](https://www.onewave-ai.com). Companion to the [Claude Skills Library](https://github.com/OneWave-AI/claude-skills) (206 single-file skills).
+Built and maintained by [OneWave AI](https://www.onewave-ai.com). Companion to the [Claude Skills Library](https://github.com/OneWave-AI/claude-skills) (205 single-file skills).
 
 ---
 
@@ -107,7 +107,7 @@ It is the bundle-and-build companion to [`claude-skills`](https://github.com/One
 
 ## The OneWave open-source constellation
 
-- [claude-skills](https://github.com/OneWave-AI/claude-skills) — 206 single-file skills, zero dependencies
+- [claude-skills](https://github.com/OneWave-AI/claude-skills) — 205 single-file skills, zero dependencies
 - **open-agent-stack** (this repo) — plugins, agents, orchestrators, design tokens
 - Want your team trained on agents? [In-person and virtual AI trainings, bootcamps, and workshops](https://www.onewave-ai.com/ai-training) from the OneWave team, including the [Claude Bootcamp](https://www.onewave-ai.com/claude-bootcamp)
 
