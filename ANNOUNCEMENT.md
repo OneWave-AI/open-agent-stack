@@ -12,7 +12,7 @@ Audit after the pass: 172 skills, 0 emoji, 0 second-person, 0 skills over 250 li
 
 A new companion repo for everything that doesn't fit a single file:
 
-- **5 plugins** — including an AI-news HQ that tracks the field and briefs you on a cadence
+- **8 plugins, 26 skills** — including vibe-stack (idea to shipped app, with a real motion system) and an AI-news HQ that tracks the field and briefs you on a cadence
 - **5 managed agents** — web-search wired, Agent SDK definitions plus portable specs
 - **5 ChatGPT workspace-agent templates** — connectors, schedules, knowledge, skills, channels
 - **2 multi-agent orchestrators** — a lead plus a team of 5, with human-in-the-loop or fully autonomous modes

@@ -15,7 +15,7 @@
     { "name": "content-engine", "source": "./plugins/content-engine", "description": "Repurpose one piece of content across every channel." },
     { "name": "brand-kit", "source": "./plugins/brand-kit", "description": "Apply a OneWave design style — tokens, theme, and brand commands." },
     { "name": "sales-desk", "source": "./plugins/sales-desk", "description": "The rep's daily loop: pre-call briefs, pipeline hygiene, account snapshots, post-call follow-ups." },
-    { "name": "vibe-stack", "source": "./plugins/vibe-stack", "description": "Idea to shipped app: scaffold with a real design system, de-AI the output, deploy clean." },
+    { "name": "vibe-stack", "source": "./plugins/vibe-stack", "description": "The full vibe-coding loop: scaffold an app or marketing site, animate it (GSAP, scroll, micro-interactions), make the fake data real, unstick it, de-AI it, ship it, demo it." },
     { "name": "market-desk", "source": "./plugins/market-desk", "description": "Personal equity-research desk: ticker briefs, portfolio risk reviews, earnings prep. Research, not advice." }
   ]
 }

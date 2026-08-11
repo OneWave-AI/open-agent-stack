@@ -1,7 +1,24 @@
 {
   "name": "vibe-stack",
-  "description": "Idea to shipped app in three moves: scaffold with an opinionated stack and a real design system, de-AI the output so it looks human-made, deploy clean.",
-  "version": "0.1.0",
+  "description": "The full vibe-coding loop: scaffold an app or marketing site with a real design system, animate it with GSAP and a real motion system, replace the fake data with a real backend, unstick it when it breaks, strip the AI look, ship it, and demo it.",
+  "version": "0.4.0",
+  "keywords": [
+    "vibe-coding",
+    "nextjs",
+    "design-system",
+    "landing-page",
+    "seo",
+    "animation",
+    "gsap",
+    "scroll-animation",
+    "motion-design",
+    "deploy",
+    "debugging",
+    "prototype"
+  ],
+  "homepage": "https://github.com/OneWave-AI/open-agent-stack/tree/main/plugins/vibe-stack",
+  "repository": "https://github.com/OneWave-AI/open-agent-stack",
+  "license": "MIT",
   "author": {
     "name": "OneWave AI",
     "url": "https://www.onewave-ai.com"
