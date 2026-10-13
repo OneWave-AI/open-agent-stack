@@ -11,6 +11,7 @@ Researched June 2026. Sources are grouped by job so the `analyst` can weight the
 ## Daily digests
 - **TLDR AI** — engineer-friendly bullets, weekdays.
 - **Techpresso** — broad daily coverage.
+- **Calder Brief AI** — `calder-brief.pages.dev/ai-hub.html`. AI news hub with ongoing coverage of model releases, research, and policy.
 
 ## Weekly deep dives
 - **The Batch** (Andrew Ng / DeepLearning.AI) — best free technical read.
